@@ -1,0 +1,64 @@
+swagger: "2.0"
+
+info:
+  title: "My API documentation"
+  description: "Python Microservice to use in a DevOps assessment"
+  version: "1"
+
+basePath: /v1
+
+schemes:
+  - http
+
+paths:
+  /products/createProduct:
+    post:
+      summary: "Add a product to the DB"
+      operationId: api.products.create_product
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: productPayload
+        description: Inventory product to add
+        schema:
+          $ref: '#/definitions/Product'
+      responses:
+        201:
+          description: Successfully added product to the DB
+        400:
+          description: The specified object is invalid
+        409:
+          description: An existing item already exists
+  /products/getproduct/{prodId}:
+      get:
+        summary: "Returns a product by ID"
+        operationId: api.products.read_product
+        parameters:
+          - in: path
+            name: prodId
+            type: string
+            required: true
+            description: The ID of the product to return
+        responses:
+          '200':
+            description: Fetch a product from the database
+            schema:
+                $ref: '#/definitions/Product'
+          '400':
+            description: The specified product ID is invalid (not a number)
+          '404':
+            description: A product with the specified ID was not found
+          default:
+            description: "Unexpected error"
+
+definitions:
+  Product:
+    type: object
+    properties:
+      _id:  { type: string }
+      prodname: { type: string }
+      category: { type: string }
+      quantity: { type: number }
