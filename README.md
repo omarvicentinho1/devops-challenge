@@ -16,25 +16,22 @@ Getting started
 ### Prerequisites
 
 - [Docker](https://www.docker.com/)
-- [Apache CouchDB](http://couchdb.apache.org)
-  ```sh
-  docker run --rm -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=pass -p 5984:5984 couchdb
-  ```
 
 ### Installation
 1. Clone the repo
    ```sh
-   git clone https://github.com/andresr22/warehouse_service.git
+   git clone https://github.com/omarvicentinho1/devops-challenge.git
    ```
-2. Install dependencies
+2. Create container for app and database
    ```sh
-   pip3 install -r requirements
-   pip3 install connexion[swagger-ui]
+   cd /devops-challenge
+   ./start.sh
+   (sudo) chmod +x start.sh (execute if you have a permission error)
    ```
 
-3. Run the service
+3. Check the service
    ```sh
-   python3 app.py
+   http://localhost:8080
    ```
 
 Usage
@@ -62,12 +59,3 @@ POST /v1/products/createProduct
 ```
 GET /products/getproduct/{prodId}
 ```
-
-Contributing
----------------
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-## Contact
-
-Andres Rios - [LinkedIn](https://www.linkedin.com/in/andresriosgtz/) - andres.rios@honeywell.com
